@@ -34,6 +34,7 @@ public class Kosc {
     public void setWartosc() {
 
         this.wartosc = new Random().nextInt(6)+1;
+        idObrazka = obrazki[wartosc];
     }
 
     public boolean isWidoczne() {

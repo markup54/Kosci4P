@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<ImageView> widokiKosci = new ArrayList<>();
     ArrayList<Kosc> kosci = new ArrayList<>();
+    Button button;
+    int ile_wybranych_koscu = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +33,21 @@ public class MainActivity extends AppCompatActivity {
             kosci.add(new Kosc());
         }
         //losuj(3);
+        button = findViewById(R.id.button);
+        button.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        losuj(ile_wybranych_koscu);
+                    }
+                }
+        );
     }
     private void losuj(int ile){
         for (int i=0;i<ile;i++){
             kosci.get(i).setWartosc();
             widokiKosci.get(i).setImageResource(kosci.get(i).getIdObrazka());
+            widokiKosci.get(i).setVisibility(View.VISIBLE);
         }
         for(int i = ile; i<widokiKosci.size();i++){
 
@@ -53,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        ile_wybranych_koscu = item.getItemId() - R.id.ile1 +1;
         switch (item.getItemId()){
+
             case R.id.ile1:
                 losuj(1);
                 return true;
@@ -66,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ile4:
                 losuj(4);
                 return true;
-                case R.id.ile5:
+            case R.id.ile5:
                 losuj(5);
                 return true;
             case R.id.ile6:

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<ImageView> widokiKosci = new ArrayList<>();
+    ArrayList<Kosc> kosci = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +26,20 @@ public class MainActivity extends AppCompatActivity {
         widokiKosci.add(findViewById(R.id.imageView4));
         widokiKosci.add(findViewById(R.id.imageView5));
         widokiKosci.add(findViewById(R.id.imageView6));
-
+        for(int i =0 ; i<6;i++) {
+            kosci.add(new Kosc());
+        }
         //losuj(3);
     }
     private void losuj(int ile){
         for (int i=0;i<ile;i++){
-            Kosc kosc = new Kosc();
-            widokiKosci.get(i).setImageResource(kosc.getIdObrazka());
+            kosci.get(i).setWartosc();
+            widokiKosci.get(i).setImageResource(kosci.get(i).getIdObrazka());
         }
         for(int i = ile; i<widokiKosci.size();i++){
-            Kosc kosc =new Kosc();
-            kosc.setWidoczne(false);
-            widokiKosci.get(i).setImageResource(kosc.getIdObrazka());
+
+            kosci.get(i).setWidoczne(false);
+            widokiKosci.get(i).setImageResource(kosci.get(i).getIdObrazka());
             widokiKosci.get(i).setVisibility(View.INVISIBLE);
 
         }

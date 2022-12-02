@@ -31,8 +31,9 @@ public class Kosc {
         return wartosc;
     }
 
-    public void setWartosc(int wartosc) {
-        this.wartosc = wartosc;
+    public void setWartosc() {
+
+        this.wartosc = new Random().nextInt(6)+1;
     }
 
     public boolean isWidoczne() {
